@@ -4,6 +4,7 @@ import numpy as np
 
 model = joblib.load("iris_model.pkl")
 species = ["Setosa", "Versicolor", "Virginica"]
+images = ["setosa.jpg", "versicolor.jpg", "virginica.jpg"]
 
 st.title("🌸 Iris Flower Classification")
 st.write("Enter the flower measurements to predict the species.")
@@ -16,3 +17,14 @@ pw = st.number_input("Petal width (cm)", 0.1, 2.5, 1.3)
 if st.button("Predict"):
     pred = model.predict(np.array([[sl, sw, pl, pw]]))[0]
     st.success(f"Predicted species: **{species[pred]}**")
+    try:
+        st.image(images[pred], caption=f"Iris {species[pred]}", width=300)
+    except Exception:
+        st.warning("Flower image not found. Please upload the image files.")
+
+st.divider()
+st.subheader("Model Information")
+st.write("**Algorithm used:**", type(model).__name__)
+st.write("**Tree depth:**", model.get_depth())
+st.write("**Number of leaves:**", model.get_n_leaves())
+st.write("**Number of features:**", model.n_features_in_)
