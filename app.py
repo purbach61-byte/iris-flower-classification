@@ -4,8 +4,7 @@ import numpy as np
 
 model = joblib.load("iris_model.pkl")
 species = ["Setosa", "Versicolor", "Virginica"]
-images = ["setosa.jpg", "versicolor.jpg", "virginica.jpg"]
-
+images = ["Iris_setosa.jpg", "Iris_versicolor.jpg", "Iris_virginica.jpg"]
 st.title("🌸 Iris Flower Classification")
 st.write("Enter the flower measurements to predict the species.")
 
