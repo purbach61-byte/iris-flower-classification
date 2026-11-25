@@ -63,8 +63,9 @@ p, li, label { color: #cfc6dc; }
 /* inputs, buttons, metrics */
 .stNumberInput input { background: #0b0710 !important; color: #f3edf7 !important; border-radius: 10px; }
 .stNumberInput > div > div { border-radius: 10px; border-color: #2a2236 !important; }
-.stButton button { background: #f3edf7; color: #07050b; border: none; border-radius: 999px; padding: .65rem 2rem; font-weight: 600; }
-.stButton button:hover { background: #ffffff; color: #07050b; }
+.stButton button { background: #a78bfa; color: #07050b; border: none; border-radius: 999px; padding: .65rem 2rem; font-weight: 600; }
+.stButton button:hover { background: #c4b5fd; color: #07050b; }
+.stButton button:focus, .stButton button:active { background: #a78bfa; color: #07050b; }
 div[data-testid="stMetric"] { border: 1px solid #2a2236; background: #0b0710; border-radius: 14px; padding: 1rem 1.2rem; }
 div[data-testid="stMetricLabel"] p { color: #9a90a8; }
 div[data-testid="stMetricValue"] { font-family: 'Playfair Display', serif; color: #f3edf7; }
