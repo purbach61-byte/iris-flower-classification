@@ -70,6 +70,7 @@ div[data-testid="stMetricLabel"] p { color: #9a90a8; }
 div[data-testid="stMetricValue"] { font-family: 'Playfair Display', serif; color: #f3edf7; }
 div[data-testid="stImage"] img { border-radius: 16px; }
 hr { border-color: #2a2236; }
+[data-testid="stMarkdownContainer"] h2, [data-testid="stMarkdownContainer"] h3 { font-family: 'Playfair Display', serif !important; }
 </style>
 """, unsafe_allow_html=True)
 
@@ -216,10 +217,11 @@ with tab_classify:
     st.divider()
     st.markdown("<h3>Model information</h3>", unsafe_allow_html=True)
     m1, m2, m3, m4 = st.columns(4)
-    m1.metric("Algorithm", type(model).__name__)
+    m1.metric("Algorithm", "Decision Tree")
     m2.metric("Tree depth", model.get_depth())
     m3.metric("Leaves", model.get_n_leaves())
     m4.metric("Features", model.n_features_in_)
+    st.caption(f"Model class: {type(model).__name__}")
 
 # ---------------------------------------------------------------- Insights
 with tab_insights:
@@ -279,6 +281,9 @@ with tab_insights:
 
     st.write("**Decision tree structure**")
     fig, ax = plt.subplots(figsize=(12, 7))
-    plot_tree(model, feature_names=feature_names,
-              class_names=list(iris.target_names), filled=True, ax=ax)
+    artists = plot_tree(model, feature_names=feature_names,
+                        class_names=list(iris.target_names), filled=True, ax=ax)
+    for a in artists:
+        if a.get_bbox_patch() is not None:
+            a.set_color("#111111")
     st.pyplot(fig)
